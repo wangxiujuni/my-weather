@@ -20,7 +20,7 @@
         </mu-list>
       </mu-menu>
     </mu-appbar>
-    <mu-drawer :open.sync="open" :docked="true" :width="width">
+    <mu-drawer :open.sync="open" :docked="true" :width="width" @click.native.stop>
       <mu-list>
         <mu-list-item button>
           <mu-list-item-title>Menu Item 1</mu-list-item-title>
