@@ -28,11 +28,11 @@ export default {
     },
     isSelect: {
       type: Boolean,
-      required: true
+      default: false
     },
     color: {
       type: String,
-      required: true
+      default:'primary'
     }
   },
   computed: {

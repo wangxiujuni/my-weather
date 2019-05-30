@@ -10,11 +10,12 @@ import {
   Icon,
   Drawer,
   TextField,
-  Grid
+  Grid,
+  Divider
 } from "muse-ui"
 import Helpers from "muse-ui/lib/Helpers" //transition组件使用
-import axios from "axios"
-import VueAxios from "vue-axios"
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios)
 Vue.use(AppBar)
@@ -26,6 +27,7 @@ Vue.use(AppBar)
   .use(Helpers)
   .use(TextField)
   .use(Grid)
+  .use(Divider)
 
 Vue.config.productionTip = false
 

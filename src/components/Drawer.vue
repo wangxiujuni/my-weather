@@ -9,6 +9,7 @@
         :isSelect="item.isSelect"
         :color="color"
         @delete="deleteState(index)"
+        @click.native="$emit('pick',item.city)"
       ></DrawerItem>
 
       <mu-list-item button :ripple="false" @click="$emit('search')">
@@ -38,13 +39,16 @@ export default {
     },
     color: {
       type: String,
-      required: true
+      default:'primary'
+    },
+    drawerState:{
+      type:Array,
+      required:true
     }
   },
   data() {
     return {
-      drawerWidth: "45%",
-      drawerState: [{ province: "吉林 长春", city: "双阳", isSelect: true }]
+      drawerWidth: "45%"
     }
   },
   methods: {

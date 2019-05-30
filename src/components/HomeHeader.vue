@@ -3,7 +3,7 @@
     <mu-appbar :color="color">
       <mu-button icon slot="left" @click.stop="showDrawer">
         <mu-icon value="menu"></mu-icon>
-      </mu-button>Title
+      </mu-button>{{title}}
 
       <mu-button icon slot="right" @click="addRotate">
         <mu-icon ref="refresh" value="refresh"></mu-icon>
@@ -26,7 +26,7 @@
       </mu-menu>
     </mu-appbar>
 
-    <Drawer :drawerOpen="drawerOpen" :color="color" @search="$emit('search')"></Drawer>
+    <Drawer :drawerOpen="drawerOpen" :drawerState="drawerState" :color="color" @search="$emit('search');closeDrawer()" @pick="$emit('pick',$event);closeDrawer()"></Drawer>
   </div>
 </template>
 
@@ -40,7 +40,15 @@ export default {
   props:{
     color: {
       type: String,
-      required: true
+      default:'primary'
+    },
+    drawerState:{
+      type:Array,
+      required:true
+    },
+    title:{
+      type:String,
+      required:true
     }
   },
   data() {
@@ -63,6 +71,10 @@ export default {
       //拼串有一个空格
       this.$refs.refresh.className+=` ${this.$style.rotate}`
       setTimeout(()=>{this.$refs.refresh.className=temp},2000)
+    },
+    //search上调用为了解决keep-alive造成的切换回home显示draw离开动画问题
+    closeDrawer(){
+      this.drawerOpen=false
     }
   }
 }

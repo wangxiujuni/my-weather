@@ -39,7 +39,8 @@
       "semi": [
         "error",
         "never"
-      ]
+      ],
+      "no-console": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"
