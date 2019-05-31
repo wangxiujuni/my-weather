@@ -2,6 +2,7 @@ import Vue from "vue"
 import App from "./App.vue"
 import "muse-ui/lib/styles/base.less"
 import "muse-ui/lib/styles/theme.less"
+import 'muse-ui-loading/dist/muse-ui-loading.css' // load css
 import {
   AppBar,
   Menu,
@@ -11,9 +12,14 @@ import {
   Drawer,
   TextField,
   Grid,
-  Divider
+  Divider,
+  Progress,
+  Snackbar
 } from "muse-ui"
 import Helpers from "muse-ui/lib/Helpers" //transition组件使用
+import Loading from 'muse-ui-loading'
+import Toast from 'muse-ui-toast'
+
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -28,6 +34,10 @@ Vue.use(AppBar)
   .use(TextField)
   .use(Grid)
   .use(Divider)
+  .use(Progress)
+  .use(Snackbar)
+
+Vue.use(Loading).use(Toast)
 
 Vue.config.productionTip = false
 

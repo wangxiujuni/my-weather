@@ -25,7 +25,8 @@ export default {
   data() {
     return {
       renderComponent: Home,
-      //当前查看的城市id
+      //当前查看的城市数据，api无法拿到省市信息所以不能直接使用id
+      //search传过来的
       cityData: {},
       //主题颜色
       color: "#42a5f5"

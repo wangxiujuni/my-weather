@@ -1,0 +1,56 @@
+.icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.icon.clear-day {
+  background-image: url("../assets/images/clear-day.svg");
+}
+
+.icon.clear-night {
+  background-image: url("../assets/images/clear-night.svg");
+}
+
+.icon.rain {
+  background-image: url("../assets/images/rain.svg");
+}
+
+.icon.snow {
+  background-image: url("../assets/images/snow.svg");
+}
+
+.icon.sleet {
+  background-image: url("../assets/images/sleet.svg");
+}
+
+.icon.wind {
+  background-image: url("../assets/images/wind.svg");
+}
+ 
+.icon.fog {
+  background-image: url("../assets/images/fog.svg");
+}
+
+.icon.cloudy {
+  background-image: url("../assets/images/cloudy.svg");
+}
+
+.icon.partly-cloudy-day {
+  background-image: url("../assets/images/partly-cloudy-day.svg");
+}
+
+.icon.partly-cloudy-night {
+  background-image: url("../assets/images/partly-cloudy-night.svg");
+}
+
+.icon.hail {
+  background-image: url("../assets/images/hail.svg");
+}
+
+.icon.thunderstorm {
+  background-image: url("../assets/images/thunderstorm.svg");
+}
+
+.icon.tornado {
+  background-image: url("../assets/images/tornado.svg");
+}

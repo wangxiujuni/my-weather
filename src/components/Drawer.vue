@@ -8,8 +8,8 @@
         :city="item.city"
         :isSelect="item.isSelect"
         :color="color"
-        @delete="deleteState(index)"
-        @click.native="$emit('pick',item.city)"
+        @delete="$emit('delete',index)"
+        @click.native="$emit('pick',item.id)"
       ></DrawerItem>
 
       <mu-list-item button :ripple="false" @click="$emit('search')">
@@ -52,9 +52,7 @@ export default {
     }
   },
   methods: {
-    deleteState(index) {
-      this.drawerState.splice(index, 1)
-    }
+
   }
 }
 </script>
