@@ -18,9 +18,9 @@ function selectIcon(iconClassArray, weatherImg, updateTime) {
 
     case "yun":
       if (hour >= 20 || hour <= 4) {
-        iconClassArray.push("partly-cloudy-day")
-      } else {
         iconClassArray.push("partly-cloudy-night")
+      } else {
+        iconClassArray.push("partly-cloudy-day")
       }
       break
 

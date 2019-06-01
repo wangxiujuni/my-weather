@@ -43,7 +43,7 @@ export default {
 <style module lang="postcss">
 .wrapper {
   height: 200px;
-  padding: 20px 5px;
+  padding: 20px 5px 0;
   color: white;
 }
 .temp {

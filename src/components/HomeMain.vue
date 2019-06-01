@@ -4,15 +4,24 @@
       v-if="state.tem"
       :state="state"
     ></MainWeather>
+    <MainForecast :state="state"></MainForecast>
+    <MainAirQuality></MainAirQuality>
+    <MainDetail></MainDetail>
   </main>
 </template>
 
 <script>
 import MainWeather from "./MainWeather"
+import MainForecast from "./MainForecast"
+import MainAirQuality from "./MainAirQuality"
+import MainDetail from "./MainDetail"
 
 export default {
   components: {
-    MainWeather
+    MainWeather,
+    MainForecast,
+    MainAirQuality,
+    MainDetail
   },
   props: {
     color: {
