@@ -1,11 +1,14 @@
 <template>
-  <div :class="$style.wrapper">
-    <MainForecastItem
-      v-for="(item,index) in forecastState"
-      :state="item"
-      :index="index"
-      :key="index"
-    ></MainForecastItem>
+  <div>
+    <div :class="$style.title">未来7日天气</div>
+    <div :class="$style.scroll">
+      <MainForecastItem
+        v-for="(item,index) in forecastState"
+        :state="item"
+        :index="index"
+        :key="index"
+      ></MainForecastItem>
+    </div>
   </div>
 </template>
 
@@ -64,13 +67,14 @@ export default {
 </script>
 
 <style module lang="postcss">
-.wrapper {
+.scroll {
   height: 150px;
   white-space: nowrap;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   overflow-y: hidden;
 }
-</style>
-
-<style scoped>
+.title {
+  font-size: 12px;
+}
 </style>
 

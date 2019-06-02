@@ -67,7 +67,8 @@ export default {
         province: newValue.provinceZh + "," + newValue.leaderZh,
         city: newValue.cityZh,
         isSelect: true,
-        id: newValue.id
+        id: newValue.id,
+        isIp: false
       }
       this.drawerState.push(drawerItem)
       console.log("bianle", newValue)
@@ -75,7 +76,10 @@ export default {
     //drawer变动，表示删除或新增了数据，重新获取天气
     drawerState(newValue) {
       console.log("biandong")
-
+      //如果是默认的ip获取数据，因为获取过了不用重复获取
+      if (newValue.isIp) {
+        return
+      }
       //如果没有城市清空数据
       if (newValue.length === 0) {
         this.state = {}
@@ -99,6 +103,33 @@ export default {
             })
         }
       })
+    }
+  },
+
+  mounted() {
+    //如果没有城市根据ip获取天气
+    if (this.drawerState.length === 0) {
+      this.axios
+        .get(`https://www.tianqiapi.com/api/?version=v6`)
+        .then(res => {
+          console.log(res)
+          if (res.status >= 400) {
+            this.$toast.error("服务器出错，请稍后再试")
+            return
+          }
+          const drawerItem = {
+            province: '',
+            city: res.data.city,
+            isSelect: true,
+            id: res.data.cityid,
+            isIp: true
+          }
+          this.drawerState.push(drawerItem)
+          this.state = res.data
+        })
+        .catch(err => {
+          this.$toast.error("服务器出错，请稍后再试" + err)
+        })
     }
   },
 

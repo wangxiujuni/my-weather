@@ -42,7 +42,7 @@ export default {
 <style module lang="postcss">
 .wrapper {
   background: #64b5f6;
-  height: 100vh;
+  color: white
 }
 </style>
 

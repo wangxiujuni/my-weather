@@ -8,6 +8,7 @@
         :city="item.city"
         :isSelect="item.isSelect"
         :color="color"
+        :isIp="item.isIp"
         @delete="$emit('delete',index)"
         @click.native="$emit('pick',item.id)"
       ></DrawerItem>

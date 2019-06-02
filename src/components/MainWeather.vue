@@ -44,7 +44,6 @@ export default {
 .wrapper {
   height: 200px;
   padding: 20px 5px 0;
-  color: white;
 }
 .temp {
   font-size: 80px;

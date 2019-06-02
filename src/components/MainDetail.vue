@@ -6,7 +6,11 @@
 
 <script>
 export default {
-
+methods: {
+  name() {
+    history.length
+  }
+},
 }
 </script>
 
