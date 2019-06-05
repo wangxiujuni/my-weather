@@ -1,12 +1,9 @@
 <template>
-  <main :class="$style.wrapper">
-    <MainWeather
-      v-if="state.tem"
-      :state="state"
-    ></MainWeather>
+  <main class="main" :style="{background:color2}">
+    <MainWeather :state="state"></MainWeather>
     <MainForecast :state="state"></MainForecast>
-    <MainAirQuality></MainAirQuality>
-    <MainDetail></MainDetail>
+    <MainAirQuality :state="state"></MainAirQuality>
+    <MainDetail :state="state"></MainDetail>
   </main>
 </template>
 
@@ -24,9 +21,9 @@ export default {
     MainDetail
   },
   props: {
-    color: {
+    color2: {
       type: String,
-      default: "primary"
+       required:true
     },
     state: {
       type: Object,
@@ -39,10 +36,9 @@ export default {
 }
 </script>
 
-<style module lang="postcss">
-.wrapper {
-  background: #64b5f6;
-  color: white
+<style>
+.main{
+  color:white
 }
 </style>
 

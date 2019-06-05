@@ -2,7 +2,7 @@
   <mu-slide-left-transition>
     <mu-list-item :style="selectStyle" button :ripple="false">
       <mu-list-item-content>
-        <mu-list-item-title >
+        <mu-list-item-title>
           <span :class="$style.title">{{city}}</span>
           <mu-icon value="gps_fixed" v-if="isIp"></mu-icon>
         </mu-list-item-title>
@@ -10,8 +10,8 @@
       </mu-list-item-content>
 
       <mu-list-item-action>
-        <mu-button icon @click.stop="$emit('delete')">
-          <mu-icon :color="color" value="remove_circle"></mu-icon>
+        <mu-button v-if="!isIp" icon @click.stop="$emit('delete')">
+          <mu-icon :color="color1" value="remove_circle"></mu-icon>
         </mu-button>
       </mu-list-item-action>
     </mu-list-item>
@@ -37,9 +37,9 @@ export default {
       type: Boolean,
       default: false
     },
-    color: {
+    color1: {
       type: String,
-      default: "primary"
+      required: true
     }
   },
   computed: {
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style module lang="postcss">
-.title{
-  vertical-align: top
+.title {
+  vertical-align: top;
 }
 </style>

@@ -1,24 +1,21 @@
 <template>
   <mu-drawer :open.sync="drawerOpen" :docked="true" :width="drawerWidth" @click.native.stop>
     <mu-list>
-      <DrawerItem
+      <HeaderDrawerItem
         v-for="(item,index) in drawerState"
         :key="item.city"
         :province="item.province"
         :city="item.city"
         :isSelect="item.isSelect"
-        :color="color"
+        :color1="color1"
         :isIp="item.isIp"
         @delete="$emit('delete',index)"
-        @click.native="$emit('pick',item.id)"
-      ></DrawerItem>
+        @click.native="$emit('pick',{id:item.id,isIp:item.isIp})"
+      ></HeaderDrawerItem>
 
       <mu-list-item button :ripple="false" @click="$emit('search')">
-        <mu-list-item-action>
-          <mu-icon value="add_circle" :color="color"></mu-icon>
-        </mu-list-item-action>
-
-        <mu-list-item-content>
+        <mu-icon value="add_circle" :color="color1"></mu-icon>
+        <mu-list-item-content :class="$style.add">
           <mu-list-item-title>添加城市</mu-list-item-title>
         </mu-list-item-content>
       </mu-list-item>
@@ -27,24 +24,24 @@
 </template>
 
 <script>
-import DrawerItem from "./DrawerItem"
+import HeaderDrawerItem from "./HeaderDrawerItem"
 
 export default {
   components: {
-    DrawerItem
+    HeaderDrawerItem
   },
   props: {
     drawerOpen: {
       type: Boolean,
       required: true
     },
-    color: {
+    color1: {
       type: String,
-      default:'primary'
+       required:true
     },
-    drawerState:{
-      type:Array,
-      required:true
+    drawerState: {
+      type: Array,
+      required: true
     }
   },
   data() {
@@ -52,11 +49,12 @@ export default {
       drawerWidth: "45%"
     }
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
 <style module lang="postcss">
+.add{
+  margin-left: 5px;
+}
 </style>

@@ -15,6 +15,7 @@ import {
   Divider,
   Progress,
   Snackbar,
+  Paper
 } from "muse-ui"
 import Helpers from "muse-ui/lib/Helpers" //transition组件使用
 import Loading from 'muse-ui-loading'
@@ -36,6 +37,7 @@ Vue.use(AppBar)
   .use(Divider)
   .use(Progress)
   .use(Snackbar)
+  .use(Paper)
 
 Vue.use(Loading).use(Toast)
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-appbar :color="color">
+    <mu-appbar :color="color1">
       <mu-button icon slot="left" @click="$emit('back')">
         <mu-icon value="keyboard_arrow_left"></mu-icon>
       </mu-button>选择城市
@@ -11,7 +11,7 @@
         ref="input"
         v-model="input"
         :class="$style.input"
-        :underline-color="color"
+        :underline-color="color1"
         placeholder="请输入城市名或拼音"
       ></mu-text-field>
     </mu-flex>
@@ -37,9 +37,9 @@ export default {
     SearchItem
   },
   props: {
-    color: {
+    color1: {
       type: String,
-      default: "primary"
+       required:true
     }
   },
   data() {

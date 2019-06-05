@@ -1,15 +1,16 @@
 <template>
   <div>
     <HomeHeader
-      :color="color"
+      :color1="color1"
       :title="title"
       :drawerState="drawerState"
       @search="$emit('search')"
       @pick="toggleCity"
       @delete="deleteDrawItem($event)"
       @refresh="refresh"
+      @color="$emit('color')"
     ></HomeHeader>
-    <HomeMain :color="color" :state="state" v-loading="loading" @updated="mainUpdated"></HomeMain>
+    <HomeMain :color2="color2" :state="state" v-loading="loading" @updated="mainUpdated"></HomeMain>
   </div>
 </template>
 
@@ -24,9 +25,13 @@ export default {
     HomeMain
   },
   props: {
-    color: {
+    color1: {
       type: String,
-      default: "primary"
+      required:true
+    },
+    color2: {
+      type: String,
+      required:true
     },
     cityData: {
       type: Object,
@@ -39,7 +44,9 @@ export default {
       state: {},
       //抽屉list状态
       drawerState: [],
-      loading: false
+      loading: false,
+      //如果是通过mounted的ip获取的数据，则不用重新获取
+      isFirst: false
     }
   },
   computed: {
@@ -50,7 +57,7 @@ export default {
           return element.city
         }
       }
-      return "myWeather"
+      return ""
     }
   },
 
@@ -73,19 +80,21 @@ export default {
       this.drawerState.push(drawerItem)
       console.log("bianle", newValue)
     },
+
     //drawer变动，表示删除或新增了数据，重新获取天气
     drawerState(newValue) {
       console.log("biandong")
-      //如果是默认的ip获取数据，因为获取过了不用重复获取
-      if (newValue.isIp) {
-        return
-      }
       //如果没有城市清空数据
       if (newValue.length === 0) {
         this.state = {}
       }
       newValue.forEach(element => {
         if (element.isSelect) {
+          //如果是默认的ip获取数据，因为获取过了不用重复获取
+          if (this.isFirst) {
+            this.isFirst = false
+            return
+          }
           this.axios
             .get(
               `https://www.tianqiapi.com/api/?version=v6&cityid=${element.id}`
@@ -109,6 +118,8 @@ export default {
   mounted() {
     //如果没有城市根据ip获取天气
     if (this.drawerState.length === 0) {
+      this.loading = true
+      this.isFirst = true
       this.axios
         .get(`https://www.tianqiapi.com/api/?version=v6`)
         .then(res => {
@@ -118,7 +129,7 @@ export default {
             return
           }
           const drawerItem = {
-            province: '',
+            province: "",
             city: res.data.city,
             isSelect: true,
             id: res.data.cityid,
@@ -134,15 +145,17 @@ export default {
   },
 
   methods: {
-    toggleCity(id) {
-      this.loading = true
+    toggleCity(data) {
+      console.log(data)
+
       this.drawerState.forEach(element => {
-        if (element.id === id) {
+        if (element.id === data.id) {
           element.isSelect = true
         } else {
           element.isSelect = false
         }
       })
+      this.loading = true
       //触发drawer变动以获取数据
       this.drawerState.splice(0, 0)
     },

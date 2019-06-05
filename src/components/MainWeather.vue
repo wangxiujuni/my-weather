@@ -31,7 +31,6 @@ export default {
   watch: {
     //每次数据变动重新加载img
     state: {
-      immediate:true,
       handler() {        
         selectIcon(this.iconClass, this.state.wea_img, this.state.update_time)
       }
@@ -46,13 +45,12 @@ export default {
   padding: 20px 5px 0;
 }
 .temp {
-  font-size: 80px;
+  font-size: 65px;
 }
 .content {
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2em;
-  transform: translateY(-0.5em);
 }
 </style>
 <style scoped>

@@ -1,54 +1,52 @@
 <template>
   <div>
-    <mu-appbar :color="color">
+    <mu-appbar :color="color1">
       <mu-button icon slot="left" @click.stop="showDrawer">
         <mu-icon value="menu"></mu-icon>
       </mu-button>
-
       {{title}}
       <mu-button icon slot="right" @click="addRotate">
         <mu-icon ref="refresh" value="refresh"></mu-icon>
       </mu-button>
 
-      <mu-menu slot="right">
-        <mu-button flat>MENU</mu-button>
+      <mu-menu slot="right" :open.sync="menuOpen">
+        <mu-button flat>
+          <mu-icon value="more_vert"></mu-icon>
+        </mu-button>
         <mu-list slot="content">
-          <mu-list-item button>
+          <mu-list-item button @click.native="$emit('color');closeMenu()">
             <mu-list-item-content>
-              <mu-list-item-title>Menu Item 1</mu-list-item-title>
-            </mu-list-item-content>
-          </mu-list-item>
-          <mu-list-item button>
-            <mu-list-item-content>
-              <mu-list-item-title>Menu Item 2</mu-list-item-title>
+              <mu-list-item-title>
+                <mu-icon value="color_lens" :class="$style.icon"></mu-icon>主题颜色
+              </mu-list-item-title>
             </mu-list-item-content>
           </mu-list-item>
         </mu-list>
       </mu-menu>
     </mu-appbar>
 
-    <Drawer
+    <HeaderDrawer
       :drawerOpen="drawerOpen"
       :drawerState="drawerState"
-      :color="color"
+      :color1="color1"
       @search="$emit('search');closeDrawer()"
       @pick="$emit('pick',$event);closeDrawer()"
       @delete="$emit('delete',$event)"
-    ></Drawer>
+    ></HeaderDrawer>
   </div>
 </template>
 
 <script>
-import Drawer from "./Drawer"
+import HeaderDrawer from "./HeaderDrawer"
 
 export default {
   components: {
-    Drawer
+    HeaderDrawer
   },
   props: {
-    color: {
+    color1: {
       type: String,
-      default: "primary"
+       required:true
     },
     drawerState: {
       type: Array,
@@ -61,7 +59,8 @@ export default {
   },
   data() {
     return {
-      drawerOpen: false
+      drawerOpen: false,
+      menuOpen: false
     }
   },
   methods: {
@@ -84,12 +83,16 @@ export default {
       }, 2000)
 
       //发射刷新事件
-      this.$emit('refresh')
+      this.$emit("refresh")
     },
 
     //search上调用为了解决keep-alive造成的切换回home显示draw离开动画问题
     closeDrawer() {
       this.drawerOpen = false
+    },
+
+    closeMenu(){
+      this.menuOpen =false
     }
   }
 }
@@ -99,5 +102,8 @@ export default {
 .rotate {
   transform: rotate(360deg);
   transition: transform linear 2s;
+}
+.icon{
+  vertical-align: top
 }
 </style>
