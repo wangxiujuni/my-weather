@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     selectStyle() {
-      return this.isSelect ? `border-bottom:2px solid ${this.color}` : ""
+      return this.isSelect ? `border-bottom:2px solid ${this.color1}` : ""
     }
   }
 }
