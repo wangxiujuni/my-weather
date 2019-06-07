@@ -55,6 +55,15 @@ export default {
       ]
     }
   },
+  created(){
+    this.colorList.forEach((element)=>{
+      if (element.color1===this.color1) {
+        element.isSelect=true
+      }else{
+        element.isSelect=false
+      }
+    })
+  },
   methods: {
     selectColor(item) {
       this.colorList.forEach(element => {

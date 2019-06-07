@@ -3,6 +3,6 @@ module.exports = {
   //   https: true
   // },
   configureWebpack: {
-    devtool: 'source-map'
-  }
+    devtool: 'none'
+  },
 }

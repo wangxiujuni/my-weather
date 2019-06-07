@@ -84,6 +84,8 @@ export default {
     //drawer变动，表示删除或新增了数据，重新获取天气
     drawerState(newValue) {
       console.log("biandong")
+      //缓存变动
+      localStorage.setItem('drawerState',JSON.stringify(this.drawerState))
       //如果没有城市清空数据
       if (newValue.length === 0) {
         this.state = {}
@@ -112,6 +114,13 @@ export default {
             })
         }
       })
+    }
+  },
+
+  created(){
+    if (localStorage.getItem('drawerState')) {
+      const state=localStorage.getItem('drawerState')
+      this.drawerState=JSON.parse(state)
     }
   },
 

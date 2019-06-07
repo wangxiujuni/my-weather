@@ -22,10 +22,6 @@ import Search from "./components/Search"
 import SelectColor from "./components/SelectColor"
 
 export default {
-  components: {
-    Home,
-    Search
-  },
   data() {
     return {
       renderComponent: Home,
@@ -36,6 +32,13 @@ export default {
       color1: "#0288d1",
       //背景颜色
       color2: "#29b6f6"
+    }
+  },
+  created() {
+    if (localStorage.getItem("color")) {
+      const colorObj = JSON.parse(localStorage.getItem("color"))
+      this.color1 = colorObj.color1
+      this.color2 = colorObj.color2
     }
   },
   methods: {
@@ -52,13 +55,13 @@ export default {
       this.cityData = data
     },
     selectColor(data) {
-      this.color1=data.color1
-      this.color2=data.color2
+      localStorage.setItem("color", JSON.stringify(data))
+      this.color1 = data.color1
+      this.color2 = data.color2
     }
   }
 }
 </script>
 
 <style>
-
 </style>
