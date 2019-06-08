@@ -68,7 +68,7 @@ export default {
   margin-bottom: 1em;
 }
 .pm {
-  font-size: 17px;
+  font-size: 16px;
   padding: 10px 0;
 }
 .tips {
