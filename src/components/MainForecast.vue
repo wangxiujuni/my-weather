@@ -37,19 +37,17 @@ export default {
       if (JSON.stringify(newValue) === "{}") {
         return
       }
-      this.axios
-        .get(
-          `https://www.tianqiapi.com/api/?version=v1&cityid=${
-            this.state.cityid
-          }`
-        )
+      fetch(
+        `https://www.tianqiapi.com/api/?version=v1&cityid=${this.state.cityid}`
+      )
+        .then(res => res.json())
         .then(res => {
           console.log(res, 1)
           if (res.status >= 400) {
             this.$toast.error("服务器出错，请稍后再试")
             return
           }
-          this.forecastState = res.data.data
+          this.forecastState = res.data
           //为state添加class属性，用于显示图标，都是白天
           this.forecastState.forEach(element => {
             element.class = ["icon"]

@@ -1,8 +1,8 @@
 module.exports = {
-  // devServer: {
-  //   https: true
-  // },
+  devServer: {
+    https: true
+  },
   configureWebpack: {
-    devtool: 'none'
+    devtool: 'source-map'
   },
 }

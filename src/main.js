@@ -21,10 +21,6 @@ import Helpers from "muse-ui/lib/Helpers" //transition组件使用
 import Loading from 'muse-ui-loading'
 import Toast from 'muse-ui-toast'
 
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-
-Vue.use(VueAxios, axios)
 Vue.use(AppBar)
   .use(Menu)
   .use(Button)

@@ -27,11 +27,11 @@ export default {
   props: {
     color1: {
       type: String,
-      required:true
+      required: true
     },
     color2: {
       type: String,
-      required:true
+      required: true
     },
     cityData: {
       type: Object,
@@ -85,7 +85,7 @@ export default {
     drawerState(newValue) {
       console.log("biandong")
       //缓存变动
-      localStorage.setItem('drawerState',JSON.stringify(this.drawerState))
+      localStorage.setItem("drawerState", JSON.stringify(this.drawerState))
       //如果没有城市清空数据
       if (newValue.length === 0) {
         this.state = {}
@@ -97,17 +97,18 @@ export default {
             this.isFirst = false
             return
           }
-          this.axios
-            .get(
-              `https://www.tianqiapi.com/api/?version=v6&cityid=${element.id}`
-            )
+          fetch(
+            `https://www.tianqiapi.com/api/?version=v6&cityid=${element.id}`
+          )
+            .then(res => res.json())
+
             .then(res => {
               console.log(res)
               if (res.status >= 400) {
                 this.$toast.error("服务器出错，请稍后再试")
                 return
               }
-              this.state = res.data
+              this.state = res
             })
             .catch(err => {
               this.$toast.error("服务器出错，请稍后再试" + err)
@@ -117,10 +118,10 @@ export default {
     }
   },
 
-  created(){
-    if (localStorage.getItem('drawerState')) {
-      const state=localStorage.getItem('drawerState')
-      this.drawerState=JSON.parse(state)
+  created() {
+    if (localStorage.getItem("drawerState")) {
+      const state = localStorage.getItem("drawerState")
+      this.drawerState = JSON.parse(state)
     }
   },
 
@@ -129,8 +130,8 @@ export default {
     if (this.drawerState.length === 0) {
       this.loading = true
       this.isFirst = true
-      this.axios
-        .get(`https://www.tianqiapi.com/api/?version=v6`)
+      fetch(`https://www.tianqiapi.com/api/?version=v6`)
+        .then(res => res.json())
         .then(res => {
           console.log(res)
           if (res.status >= 400) {
@@ -145,7 +146,7 @@ export default {
             isIp: true
           }
           this.drawerState.push(drawerItem)
-          this.state = res.data
+          this.state = res
         })
         .catch(err => {
           this.$toast.error("服务器出错，请稍后再试" + err)

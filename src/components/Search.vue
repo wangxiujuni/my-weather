@@ -56,8 +56,7 @@ export default {
       //防抖
       _.debounce(
         () => {
-          this.axios
-            .get(newValue, { baseURL: "http://localhost:3000/" })
+          fetch(`http://localhost:3000/${newValue}`).then(res=>res.json())
             .then(res => {
               //如果回调时输入为空清空列表
               if (this.input === "") {
@@ -68,7 +67,7 @@ export default {
                 this.$toast.error("服务器出错，请稍后再试")
                 return
               }
-              this.renderResult = res.data
+              this.renderResult = res
             }).catch((err)=>{
               this.$toast.error("服务器出错，请稍后再试"+err)
             })
