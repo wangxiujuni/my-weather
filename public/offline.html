@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>myweather</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        height: 56px;
+        color: white;
+        fill: white;
+        font-size: 20px;
+        background-color: #0288d1;
+      }
+      .menu {
+        margin-left: 17px;
+      }
+      .name {
+        margin-left: 20px;
+      }
+      .refresh {
+        margin: 0 20px 0 auto;
+      }
+      .settings {
+        margin-right: 17px;
+      }
+      .main {
+        text-align: center;
+        font-size: 22px;
+      }
+      .offline {
+        width: 100px;
+        height: 100px;
+        margin: 50px 0;
+        fill: #0288d1;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <svg
+        class="menu"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      </svg>
+      <span class="name">
+        myWeather
+      </span>
+      <svg
+        class="refresh"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+        />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+
+      <svg
+        class="settings"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+        />
+      </svg>
+    </header>
+    <main class="main">
+      <svg
+        class="offline"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M23.64 7c-.45-.34-4.93-4-11.64-4-1.5 0-2.89.19-4.15.48L18.18 13.8 23.64 7zm-6.6 8.22L3.27 1.44 2 2.72l2.05 2.06C1.91 5.76.59 6.82.36 7l11.63 14.49.01.01.01-.01 3.9-4.86 3.32 3.32 1.27-1.27-3.46-3.46z"
+        />
+      </svg>
+      <div>检查你的连接，</div>
+      <div>
+        myWeather需要联网，
+      </div>
+      <div>如果没有网络则无法获取天气数据</div>
+    </main>
+    <script>
+      ;(function() {
+        if (localStorage.getItem("color")) {
+          const colorObj = JSON.parse(localStorage.getItem("color"))
+          document.querySelector(".header").style.backgroundColor =
+            colorObj.color1
+          document.querySelector(".offline").style.fill = colorObj.color1
+        }
+      })()
+    </script>
+  </body>
+</html>

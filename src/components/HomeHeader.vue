@@ -21,6 +21,13 @@
               </mu-list-item-title>
             </mu-list-item-content>
           </mu-list-item>
+          <mu-list-item v-if="isShowInstallButton" button @click.native="install">
+            <mu-list-item-content>
+              <mu-list-item-title>
+                <mu-icon value="system_update" :class="$style.icon"></mu-icon>安装到手机
+              </mu-list-item-title>
+            </mu-list-item-content>
+          </mu-list-item>
         </mu-list>
       </mu-menu>
     </mu-appbar>
@@ -46,7 +53,7 @@ export default {
   props: {
     color1: {
       type: String,
-       required:true
+      required: true
     },
     drawerState: {
       type: Array,
@@ -60,7 +67,15 @@ export default {
   data() {
     return {
       drawerOpen: false,
-      menuOpen: false
+      menuOpen: false,
+      isShowInstallButton: false,
+      beforeInstallPrompt: null
+    }
+  },
+  created() {
+    window.onbeforeinstallprompt = event => {
+      this.isShowInstallButton = true
+      this.beforeInstallPrompt = event
     }
   },
   methods: {
@@ -91,8 +106,16 @@ export default {
       this.drawerOpen = false
     },
 
-    closeMenu(){
-      this.menuOpen =false
+    closeMenu() {
+      this.menuOpen = false
+    },
+
+    install() {
+      if (this.beforeInstallPrompt) {
+        this.beforeInstallPrompt.prompt().then(()=>{
+          this.isShowInstallButton=false
+        })
+      }
     }
   }
 }
@@ -103,7 +126,7 @@ export default {
   transform: rotate(360deg);
   transition: transform linear 2s;
 }
-.icon{
-  vertical-align: top
+.icon {
+  vertical-align: top;
 }
 </style>

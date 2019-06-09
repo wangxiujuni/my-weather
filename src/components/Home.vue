@@ -140,9 +140,9 @@ export default {
           }
           const drawerItem = {
             province: "",
-            city: res.data.city,
+            city: res.city,
             isSelect: true,
-            id: res.data.cityid,
+            id: res.cityid,
             isIp: true
           }
           this.drawerState.push(drawerItem)
