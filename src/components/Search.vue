@@ -56,7 +56,7 @@ export default {
       //防抖
       _.debounce(
         () => {
-          fetch(`http://localhost:3000/${newValue}`).then(res=>res.json())
+          fetch(`http://wang.codetech.top:3000/${newValue}`).then(res=>res.json())
             .then(res => {
               //如果回调时输入为空清空列表
               if (this.input === "") {
